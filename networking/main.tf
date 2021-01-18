@@ -39,7 +39,7 @@ resource "aws_security_group" "sg_pub_1" {
 }
 
 resource "aws_security_group_rule" "ingress_rules" {
-  count             = lenght(var.pub_ingress_rules)
+  count             = length(var.pub_ingress_rules)
   type              = "ingress"
   from_port         = var.pub_ingress_rules[count.index][0]
   to_port           = var.pub_ingress_rules[count.index][1]
