@@ -27,3 +27,28 @@ module "netwk" {
   vpc_name        = var.vpc_name
   version         = "1.0.0"
 }
+
+resource "aws_security_group" "allow_ssh" {
+  name        = "allow_ssh"
+  description = "Allow ssh inbound traffic"
+  vpc_id      = module.netwk.vpc_ip
+
+  ingress {
+    from_port   = var.ssh_port
+    to_port     = var.ssh_port
+    protocol    = "tcp"
+    cidr_blocks = [var.ssh_cidr_list]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "allow_ssh"
+    Project = var.project_name
+  }
+}

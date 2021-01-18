@@ -50,3 +50,11 @@ variable "rt_name_pub" {
   description = "route table name"
   #default = "rt-MODOS-AWS-pub-1"
 }
+variable "ssh_port" {
+  description = "ssh port"
+  #default = "22"  
+}
+variable "ssh_cidr_list" {
+  description = "cidr blocks allowed ssh"
+  #default = []  
+}
