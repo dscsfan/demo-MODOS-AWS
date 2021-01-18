@@ -10,7 +10,7 @@ resource "aws_resourcegroups_group" "resgrp-MODOS-AWS" {
   "TagFilters": [
     {
       "Key": "Project",
-      "Values": ["MODOS-AWS"]
+      "Values": ["modos-aws"]
     }
   ]
 }
