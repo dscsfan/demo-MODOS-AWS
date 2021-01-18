@@ -28,27 +28,23 @@ module "netwk" {
   version         = "1.0.0"
 }
 
-resource "aws_security_group" "allow_ssh" {
-  name        = "allow_ssh"
-  description = "Allow ssh inbound traffic"
+resource "aws_security_group" "sg_pub_1" {
+  name        = "sg_pub_1"
   vpc_id      = module.netwk.vpc_id
 
-  ingress {
-    from_port   = var.ssh_port
-    to_port     = var.ssh_port
-    protocol    = "tcp"
-    cidr_blocks = [var.ssh_cidr_list]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
   tags = {
-    Name = "allow_ssh"
+    Name    = "sg_pub_1"
     Project = var.project_name
   }
+}
+
+resource "aws_security_group_rule" "ingress_rules" {
+  count             = lenght(var.pub_ingress_rules)
+  type              = "ingress"
+  from_port         = var.pub_ingress_rules[count.index][0]
+  to_port           = var.pub_ingress_rules[count.index][1]
+  protocol          = var.pub_ingress_rules[count.index][2]
+  cidr_blocks       = var.pub_ingress_rules[count.index][3]
+  description       = var.pub_ingress_rules[count.index][4]
+  security_group_id = aws_security_group.sg_pub_1.id
 }
