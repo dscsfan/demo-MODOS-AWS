@@ -31,7 +31,7 @@ module "netwk" {
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
   description = "Allow ssh inbound traffic"
-  vpc_id      = module.netwk.vpc_ip
+  vpc_id      = module.netwk.vpc_id
 
   ingress {
     from_port   = var.ssh_port
