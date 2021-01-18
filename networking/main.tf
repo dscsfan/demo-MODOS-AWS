@@ -7,7 +7,7 @@ terraform {
 }
 
 provider "aws" {
-  region = var.region
+  region = var.AWS_REGION
 }
 
 module "netwk" {
@@ -15,7 +15,7 @@ module "netwk" {
   AWS_REGION      = var.AWS_REGION
   azs             = var.azs
   igw_name        = var.igw_name
-  pri_snet_cidr_1 = var.pri_snet_cidr_1s
+  pri_snet_cidr_1 = var.pri_snet_cidr_1
   pri_snet_cidr_2 = var.pri_snet_cidr_2
   pri_snet_name_1 = var.pri_snet_name_1
   pri_snet_name_2 = var.pri_snet_name_2
