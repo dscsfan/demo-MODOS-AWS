@@ -14,7 +14,7 @@ variable "sg_pri_1" {
 
 }
 variable "database_name" {
-  decription = "master db name"
+  description = "master db name"
 }
 variable "username" {
   description = "master db username"
