@@ -35,32 +35,13 @@ module "db" {
 resource "aws_db_parameter_group" "rds-pg-modos-aws" {
   name   = "rds-pg-modos-aws"
   family = "aurora5.6"
-
-  parameter {
-    name  = "character_set_server"
-    value = "utf8"
-  }
-
-  parameter {
-    name  = "character_set_client"
-    value = "utf8"
-  }
+  description = "RDS db parameter group for modos-aws"
 }
 
 resource "aws_rds_cluster_parameter_group" "rds-clst-pg-modos-aws" {
   name        = "rds-clst-pg-modos-aws"
   family      = "aurora5.6"
-  description = "RDS default cluster parameter group"
-
-  parameter {
-    name  = "character_set_server"
-    value = "utf8"
-  }
-
-  parameter {
-    name  = "character_set_client"
-    value = "utf8"
-  }
+  description = "RDS cluster parameter group for modos-aws"
 }
 data "aws_vpc" "selected" {
   filter {
