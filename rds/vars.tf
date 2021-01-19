@@ -13,3 +13,6 @@ variable "pri_snet_name_2" {
 variable "sg_pri_1" {
   
 }
+variable "database_name" {
+  
+}
