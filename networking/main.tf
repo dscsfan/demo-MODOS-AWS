@@ -63,7 +63,7 @@ resource "aws_security_group" "sg_pri_1" {
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
-    security_groups = [ aws_security_group.elb_sgsg_pub_1.id ]
+    security_groups = [ aws_security_group.sg_pub_1.id ]
   }
 }
 
