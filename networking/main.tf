@@ -29,8 +29,8 @@ module "netwk" {
 }
 
 resource "aws_security_group" "sg_pub_1" {
-  name        = "sg_pub_1"
-  vpc_id      = module.netwk.vpc_id
+  name   = "sg_pub_1"
+  vpc_id = module.netwk.vpc_id
 
   tags = {
     Name    = "sg_pub_1"
@@ -49,3 +49,21 @@ resource "aws_security_group_rule" "pub_ingress_rules" {
   description       = var.pub_ingress_rules[count.index].description
   security_group_id = aws_security_group.sg_pub_1.id
 }
+
+resource "aws_security_group" "sg_pri_1" {
+  name   = "sg_pri_1"
+  vpc_id = module.netwk.vpc_id
+
+  tags = {
+    Name    = "sg_pri_1"
+    Project = var.project_name
+  }
+
+  ingress {
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    security_groups = [ aws_security_group.elb_sgsg_pub_1.id ]
+  }
+}
+
