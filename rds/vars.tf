@@ -16,3 +16,6 @@ variable "sg_pri_1" {
 variable "database_name" {
   
 }
+variable "project_name" {
+  
+}
