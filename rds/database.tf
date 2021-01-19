@@ -1,8 +1,11 @@
 module "db" {
   source  = "terraform-aws-modules/rds-aurora/aws"
-  version = "~> 3.0"
+  version = "3.3.0"
 
-  name = var.database_name
+  name          = "rds-modos-aws-01" #resource name
+  database_name = var.database_name  #database name
+  username      = var.username       #master db username
+  password      = var.password       #master db password
 
   engine         = "aurora-postgresql"
   engine_version = "11.9"
@@ -18,17 +21,47 @@ module "db" {
   apply_immediately       = true
   monitoring_interval     = 10
 
-  #db_parameter_group_name         = "default"
-  #db_cluster_parameter_group_name = "default"
+  db_parameter_group_name         = aws_db_parameter_group.rds-pg-modos-aws.name
+  db_cluster_parameter_group_name = aws_rds_cluster_parameter_group.rds-clst-pg-modos-aws.name
 
   #enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
   tags = {
     Project = var.project_name
-    Name = var.database_name
+    Name    = var.database_name
   }
 }
 
+resource "aws_db_parameter_group" "rds-pg-modos-aws" {
+  name   = "rds-pg-modos-aws"
+  family = "postgres11"
+
+  parameter {
+    name  = "character_set_server"
+    value = "utf8"
+  }
+
+  parameter {
+    name  = "character_set_client"
+    value = "utf8"
+  }
+}
+
+resource "aws_rds_cluster_parameter_group" "rds-clst-pg-modos-aws" {
+  name        = "rds-clst-pg-modos-aws"
+  family      = "postgres11"
+  description = "RDS default cluster parameter group"
+
+  parameter {
+    name  = "character_set_server"
+    value = "utf8"
+  }
+
+  parameter {
+    name  = "character_set_client"
+    value = "utf8"
+  }
+}
 data "aws_vpc" "selected" {
   filter {
     name   = "tag:Name"
