@@ -32,7 +32,7 @@ module "db" {
 data "aws_vpc" "selected" {
   filter {
     name   = "tag:Name"
-    values = var.vpc_name
+    values = ["${var.vpc_name}"]
   }
 }
 
@@ -40,7 +40,7 @@ data "aws_subnet" "snet-pri-1" {
   vpc_id = data.aws_vpc.selected.id
   filter {
     name   = "tag:Name"
-    values = var.pri_snet_name_1
+    values = ["${var.pri_snet_name_1}"]
   }
 }
 
@@ -48,7 +48,7 @@ data "aws_subnet" "snet-pri-2" {
   vpc_id = data.aws_vpc.selected.id
   filter {
     name   = "tag:Name"
-    values = var.pri_snet_name_2
+    values = ["${var.pri_snet_name_2}"]
   }
 }
 
@@ -57,7 +57,7 @@ data "aws_security_group" "sg_pri_1" {
   vpc_id = data.aws_vpc.selected.id
   filter {
     name   = "tag:Name"
-    values = var.sg_pri_1
+    values = ["${var.sg_pri_1}"]
   }
 }
 
