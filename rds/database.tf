@@ -34,7 +34,7 @@ module "db" {
 
 resource "aws_db_parameter_group" "rds-pg-modos-aws" {
   name   = "rds-pg-modos-aws"
-  family = "postgres11"
+  family = "aurora-postgres11"
 
   parameter {
     name  = "character_set_server"
@@ -49,7 +49,7 @@ resource "aws_db_parameter_group" "rds-pg-modos-aws" {
 
 resource "aws_rds_cluster_parameter_group" "rds-clst-pg-modos-aws" {
   name        = "rds-clst-pg-modos-aws"
-  family      = "postgres11"
+  family      = "aurora-postgres11"
   description = "RDS default cluster parameter group"
 
   parameter {
