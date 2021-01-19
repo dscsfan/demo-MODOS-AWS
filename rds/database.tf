@@ -21,7 +21,7 @@ module "db" {
   db_parameter_group_name         = "default"
   db_cluster_parameter_group_name = "default"
 
-  enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
+  #enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
   tags = {
     Project = var.project_name
