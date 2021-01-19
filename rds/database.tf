@@ -5,10 +5,10 @@ module "db" {
   name = var.database_name
 
   engine         = "aurora-postgresql"
-  engine_version = "9.6.9"
+  engine_version = "11.9"
 
   vpc_id  = data.aws_vpc.selected.id
-  subnets = ["${data.aws_subnet.snet-pri-1.id}", "${data.aws_subnet.snet-pri-2.id}"]
+  subnets = [data.aws_subnet.snet-pri-1.id, data.aws_subnet.snet-pri-2.id]
 
   replica_count           = 1
   allowed_security_groups = ["${data.aws_security_group.sg_pri_1.id}"]
@@ -24,15 +24,15 @@ module "db" {
   enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
 
   tags = {
-    Environment = "dev"
-    Terraform   = "true"
+    Project = var.project_name
+    Name = var.database_name
   }
 }
 
 data "aws_vpc" "selected" {
   filter {
     name   = "tag:Name"
-    values = ["${var.vpc_name}"]
+    values = [var.vpc_name]
   }
 }
 
