@@ -1,5 +1,5 @@
 variable "AWS_REGION" {
-  default = "us-west-1"
+  #default = "us-west-1"
 }
 variable "kinesis_name" {
   description = "Kinesis Stream Name"
