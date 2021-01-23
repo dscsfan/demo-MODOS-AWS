@@ -2,9 +2,9 @@ resource "aws_instance" "bastion_host" {
   ami           = var.ami
   instance_type = var.instance_type
   # the VPC subnet
-  subnet_id = aws_subnet.snet-pub-1.id
+  subnet_id = data.aws_subnet.snet-pub-1.id
   # the security group
-  vpc_security_group_ids = [aws_security_group.sg_pub_1.id]
+  vpc_security_group_ids = [data.aws_security_group.sg_pub_1.id]
   # the public SSH key
   key_name = aws_key_pair.mykeypair.key_name
 
