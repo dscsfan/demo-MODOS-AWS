@@ -12,7 +12,7 @@ provider "aws" {
 
 module "kinesis" {
   source  = "app.terraform.io/DatasourceConsulting/kinesis/aws"
-  version = "1.0.1"
+  version = "1.0.2"
   # insert required variables here
   AWS_REGION       = var.AWS_REGION
   kinesis_name     = var.kinesis_name
