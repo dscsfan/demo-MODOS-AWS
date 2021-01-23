@@ -22,3 +22,6 @@ variable "sg_pub_name" {
 variable "pub-key" {
   
 }
+variable "project_name" {
+  
+}
