@@ -1,17 +1,3 @@
-/*
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-    }
-  }
-}
-
-provider "aws" {
-  region = var.AWS_REGION
-}
-*/
-
 module "kinesis" {
   source  = "app.terraform.io/DatasourceConsulting/kinesis/aws"
   version = "1.0.2"
