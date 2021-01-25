@@ -1,3 +1,4 @@
+/*
 terraform {
   required_providers {
     aws = {
@@ -9,6 +10,7 @@ terraform {
 provider "aws" {
   region = var.AWS_REGION
 }
+*/
 
 module "kinesis" {
   source  = "app.terraform.io/DatasourceConsulting/kinesis/aws"
