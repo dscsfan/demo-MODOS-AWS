@@ -1,3 +1,6 @@
+variable "AWS_REGION" {
+  
+}
 variable "glue_role_name" {
   
 }
