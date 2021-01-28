@@ -11,6 +11,7 @@ resource "aws_instance" "bastion_host" {
   tags = {
     Name    = var.instance_name
     Project = var.project_name
+    env = "DEV"
   }
 }
 
