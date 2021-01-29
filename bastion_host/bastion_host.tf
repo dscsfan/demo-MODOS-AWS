@@ -6,7 +6,7 @@ resource "aws_instance" "bastion_host" {
   # the security group
   vpc_security_group_ids = [data.aws_security_group.sg_pub_1.id]
   # the public SSH key
-  key_name = aws_key_pair.mykeypair.key_name
+  key_name = var.key_name
 
   tags = {
     Name    = var.instance_name
