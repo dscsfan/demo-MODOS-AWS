@@ -19,7 +19,7 @@ variable "pub_snet_name" {
 variable "sg_pub_name" {
 
 }
-variable "pub-key" {
+variable "key_name" {
   
 }
 variable "project_name" {
