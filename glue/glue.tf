@@ -1,8 +1,5 @@
 data "aws_iam_role" "selected" {
-  filter {
-    name   = "tag:Name"
-    values = [var.glue_role_name]
-  }
+  name = var.glue_role_name
 }
 
 resource "aws_glue_catalog_database" "catalog_database" {
