@@ -20,12 +20,12 @@ resource "aws_glue_catalog_table" "aws_glue_catalog_table" {
     }
     columns {
       name = "sensorid"
-      type = "string"
+      type = "number"
     }
 
     columns {
       name = "currenttemperature"
-      type = "string"
+      type = "number"
     }
 
     columns {
