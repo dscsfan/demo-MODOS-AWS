@@ -9,7 +9,9 @@ resource "aws_glue_catalog_database" "catalog_database" {
 resource "aws_glue_catalog_table" "aws_glue_catalog_table" {
   name          = var.catalog_table_name
   database_name = aws_glue_catalog_database.catalog_database.name
-
+  parameters = {
+	  classification = "json"
+  }
   table_type = "EXTERNAL_TABLE"
   
   storage_descriptor {
