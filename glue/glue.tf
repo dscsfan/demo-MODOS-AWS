@@ -25,13 +25,13 @@ resource "aws_glue_catalog_table" "aws_glue_catalog_table" {
       typeOfData  = "kinesis"
     }
 
-    ser_de_info [{
+    ser_de_info {
       name = ""
       parameters = {
         paths = "currenttemperature,sensorid,status"
       }
       serialization_library = "org.openx.data.jsonserde.JsonSerDe"
-    }]
+    }
 
     columns {
       name = "sensorid"
