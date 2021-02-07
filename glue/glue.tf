@@ -10,13 +10,13 @@ resource "aws_glue_catalog_table" "aws_glue_catalog_table" {
   name          = var.catalog_table_name
   database_name = aws_glue_catalog_database.catalog_database.name
   parameters = {
-    classification = "json"
+	  classification = "json"
   }
   table_type = "EXTERNAL_TABLE"
-
+  
   storage_descriptor {
-    input_format  = "org.apache.hadoop.mapred.TextInputFormat"
-    location      = "ks-modos-aws-1"
+    input_format = "org.apache.hadoop.mapred.TextInputFormat"
+    location = "ks-modos-aws-1"
     output_format = "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat"
 
     parameters = {
@@ -25,14 +25,13 @@ resource "aws_glue_catalog_table" "aws_glue_catalog_table" {
       typeOfData  = "kinesis"
     }
 
-    ser_de_info {
-      name                  = "my-stream"
-      serialization_library = "org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe"
-
+    ser_de_info [{
+      name = ""
       parameters = {
-        "serialization.format" = 1
+        paths = "currenttemperature,sensorid,status"
       }
-    }
+      serialization_library = "org.openx.data.jsonserde.JsonSerDe"
+    }]
 
     columns {
       name = "sensorid"
