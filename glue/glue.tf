@@ -26,7 +26,7 @@ resource "aws_glue_catalog_table" "aws_glue_catalog_table" {
     }
 
     ser_de_info {
-      name = ""
+      name = "modos-stream"
       parameters = {
         paths = "currenttemperature,sensorid,status"
       }
