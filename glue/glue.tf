@@ -10,13 +10,13 @@ resource "aws_glue_catalog_table" "aws_glue_catalog_table" {
   name          = var.catalog_table_name
   database_name = aws_glue_catalog_database.catalog_database.name
   parameters = {
-	  classification = "json"
+    classification = "json"
   }
   table_type = "EXTERNAL_TABLE"
-  
+
   storage_descriptor {
-    input_format = "org.apache.hadoop.mapred.TextInputFormat"
-    location = "ks-modos-aws-1"
+    input_format  = "org.apache.hadoop.mapred.TextInputFormat"
+    location      = "ks-modos-aws-1"
     output_format = "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat"
 
     parameters = {
