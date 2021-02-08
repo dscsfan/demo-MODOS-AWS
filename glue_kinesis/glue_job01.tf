@@ -12,7 +12,7 @@ resource "aws_glue_job" "glue_job01" {
     name           = "glueetl"
     python_version = "3"
     #script_location = "s3://s3-modos-aws-raw/scripts/load-streaming-data-to-raw-01"
-    script_location = "s3://${data.aws_s3_bucket.s3-raw.bucket}/script/${var.glue_job01_name}"
+    script_location = "s3://${data.aws_s3_bucket.s3-raw.bucket}/scripts/${var.glue_job01_name}"
   }
 
   default_arguments = {
