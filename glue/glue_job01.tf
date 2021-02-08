@@ -4,17 +4,21 @@ resource "aws_cloudwatch_log_group" "glue_log_group_job01" {
 }
 
 resource "aws_glue_job" "glue_job01" {
-  name     = var.glue_job01_name
+  name = var.glue_job01_name
   #role_arn = aws_iam_role.glue_role.arn
   role_arn = "arn:aws:iam::994037683618:role/modos-aws-glue-role"
 
   command {
-    #script_location = "s3://${aws_s3_bucket.s3-raw.scripts}/load-streaming-data-to-raw-01.py"
-  script_location = "s3://s3-modos-aws-raw/scripts/load-streaming-data-to-raw-01.py"
+    name           = "glueetl"
+    python_version = "3"
+    #script_location = "s3://${aws_s3_bucket.s3-raw.scripts}/load-streaming-data-to-raw-01"
+    script_location = "s3://s3-modos-aws-raw/scripts/load-streaming-data-to-raw-01"
   }
 
   default_arguments = {
-    # ... potentially other arguments ...
+    "--TempDir"                          = "s3://s3-modos-aws-raw/temp"
+    "--job-bookmark-option"              = "job-bookmark-disable"
+    "--job-language"                     = "python"
     "--continuous-log-logGroup"          = aws_cloudwatch_log_group.glue_log_group_job01.name
     "--enable-continuous-cloudwatch-log" = "true"
     "--enable-continuous-log-filter"     = "true"
