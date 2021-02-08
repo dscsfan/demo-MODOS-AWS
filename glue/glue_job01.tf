@@ -24,6 +24,7 @@ resource "aws_glue_job" "glue_job01" {
     "--enable-continuous-log-filter"     = "true"
     "--enable-metrics"                   = ""
   }
+  glue_version = "2.0"
 }
 
 /*
