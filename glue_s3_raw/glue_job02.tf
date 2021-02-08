@@ -15,7 +15,7 @@ resource "aws_glue_job" "glue_job02" {
   }
 
   default_arguments = {
-    "--TempDir"                          = "s3://s3-modos-aws-raw/temp"
+    "--TempDir"                          = "s3://${data.aws_s3_bucket.s3-curated.bucket}/temp"
     "--job-bookmark-option"              = "job-bookmark-disable"
     "--job-language"                     = "python"
     "--continuous-log-logGroup"          = aws_cloudwatch_log_group.glue_log_group_job02.name
