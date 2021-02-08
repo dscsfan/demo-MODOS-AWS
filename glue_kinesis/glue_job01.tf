@@ -11,8 +11,8 @@ resource "aws_glue_job" "glue_job01" {
   command {
     name           = "glueetl"
     python_version = "3"
-    #script_location = data.aws_s3_bucket.s3-raw.scripts/load-streaming-data-to-raw-01
-    script_location = "s3://s3-modos-aws-raw/scripts/load-streaming-data-to-raw-01"
+    #script_location = "s3://s3-modos-aws-raw/scripts/load-streaming-data-to-raw-01"
+    script_location = "s3://${data.aws_s3_bucket.s3-raw.bucket}/script/${var.glue_job01_name}"
   }
 
   default_arguments = {
@@ -30,8 +30,8 @@ resource "aws_glue_job" "glue_job01" {
 data "aws_iam_role" "glue_role" {
   name = var.glue_role_name
 }
-/*
+
 data "aws_s3_bucket" "s3-raw" {
   bucket = var.s3_raw_bucket_name
 }
-*/
+
