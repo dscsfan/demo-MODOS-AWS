@@ -26,10 +26,6 @@ resource "aws_glue_job" "glue_job02" {
   glue_version = "2.0"
 }
 
-data "aws_iam_role" "glue_role" {
-  name = var.glue_role_name
-}
-
 data "aws_s3_bucket" "s3-curated" {
   bucket = var.s3_curated_bucket_name
 }
