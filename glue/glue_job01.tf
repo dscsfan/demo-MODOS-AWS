@@ -5,8 +5,8 @@ resource "aws_cloudwatch_log_group" "glue_log_group_job01" {
 
 resource "aws_glue_job" "glue_job01" {
   name = var.glue_job01_name
-  #role_arn = aws_iam_role.glue_role.arn
-  role_arn = "arn:aws:iam::994037683618:role/modos-aws-glue-role"
+  role_arn = aws_iam_role.glue_role.arn
+  #role_arn = "arn:aws:iam::994037683618:role/modos-aws-glue-role"
 
   command {
     name           = "glueetl"
@@ -27,11 +27,10 @@ resource "aws_glue_job" "glue_job01" {
   glue_version = "2.0"
 }
 
-/*
 data "aws_iam_role" "glue_role" {
   name = var.glue_role_name
 }
-
+/*
 data "aws_s3_bucket" "s3-raw" {
   bucket = var.s3_raw_bucket_name
 }
