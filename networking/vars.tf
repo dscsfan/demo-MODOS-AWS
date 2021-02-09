@@ -47,8 +47,13 @@ variable "igw_name" {
   #default = "igw-modos-aws"
 }
 variable "rt_name_pub" {
-  description = "route table name"
+  description = "IGW route table name"
   #default = "rt-MODOS-AWS-pub-1"
+}
+
+variable "rt_name_pri" {
+   description = "Nat route table name"
+  #default = "rt-MODOS-AWS-pri-1"
 }
 variable "pub_ingress_rules" {
   description = "ingress rule for pub_sg"

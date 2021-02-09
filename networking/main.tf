@@ -91,3 +91,41 @@ resource "aws_vpc_endpoint_route_table_association" "route_table_association" {
   route_table_id  = module.netwk.route_table_id
   vpc_endpoint_id = aws_vpc_endpoint.s3.id
 }
+
+#create nat gateway
+resource "aws_eip" "nat" {
+  vpc = true
+}
+resource "aws_nat_gateway" "nat-gw" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = module.netwk.snet_pub_1_id
+
+  tags = {
+    Name = "nat-gw"
+    Project = var.project_name
+  }
+}
+
+resource "aws_route_table" "rt-pri-1" {
+  vpc_id = aws_vpc.vpc01.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_nat_gateway.nat-gw.id
+  }
+
+  tags = {
+    Name = var.rt_name_pri
+    Project = var.project_name
+  }
+}
+
+# route associations
+resource "aws_route_table_association" "snet-pri-1" {
+  subnet_id      = module.netwk.snet_pri_1_id
+  route_table_id = aws_route_table.rt-pri-1.id
+}
+
+resource "aws_route_table_association" "snet-pri-2" {
+  subnet_id      = module.netwk.snet_pri_2_id
+  route_table_id = aws_route_table.rt-pri-1.id
+}
