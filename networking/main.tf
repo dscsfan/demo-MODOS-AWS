@@ -25,7 +25,7 @@ module "netwk" {
   rt_name_pub     = var.rt_name_pub
   vpc_cidr        = var.vpc_cidr
   vpc_name        = var.vpc_name
-  version         = "1.0.0"
+  version         = "1.0.1"
 }
 
 resource "aws_security_group" "sg_pub_1" {
@@ -77,3 +77,17 @@ resource "aws_security_group" "sg_pri_1" {
   }
 }
 
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id       = module.netwk.vpc_id
+  service_name = "com.amazonaws.us-west-1.s3"
+
+  tags = {
+    Name    = "VPC-endpoint-s3"
+    Project = var.project_name
+  }
+}
+
+resource "aws_vpc_endpoint_route_table_association" "route_table_association" {
+  route_table_id  = module.netwk.route_table_id
+  vpc_endpoint_id = aws_vpc_endpoint.s3.id
+}
