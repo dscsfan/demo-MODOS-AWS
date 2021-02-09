@@ -32,13 +32,6 @@ resource "aws_security_group" "sg_pub_1" {
   name   = "sg_pub_1"
   vpc_id = module.netwk.vpc_id
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
   tags = {
     Name    = "sg_pub_1"
     Project = var.project_name
@@ -54,6 +47,18 @@ resource "aws_security_group_rule" "pub_ingress_rules" {
   protocol          = var.pub_ingress_rules[count.index].protocol
   cidr_blocks       = [var.pub_ingress_rules[count.index].cidr_block]
   description       = var.pub_ingress_rules[count.index].description
+  security_group_id = aws_security_group.sg_pub_1.id
+}
+
+resource "aws_security_group_rule" "pub_egress_rules" {
+  count = length(var.pub_ingress_rules)
+
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  description       = "allow all"
   security_group_id = aws_security_group.sg_pub_1.id
 }
 
