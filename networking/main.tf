@@ -31,9 +31,9 @@ module "netwk" {
 resource "aws_security_group" "sg_pub_1" {
   name   = "sg_pub_1"
   vpc_id = module.netwk.vpc_id
-  count = length(var.pub_ingress_rules)
-
+  
   ingress {
+    count = length(var.pub_ingress_rules)
     from_port   = var.pub_ingress_rules[count.index].from_port
     to_port     = var.pub_ingress_rules[count.index].to_port
     protocol    = var.pub_ingress_rules[count.index].protocol
