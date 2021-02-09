@@ -76,14 +76,13 @@ resource "aws_security_group" "sg_pri_1" {
     security_groups = [aws_security_group.sg_pub_1.id]
   }
 
-  egress = {
+  egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
     description = "allow all"
   }
-
 }
 
 resource "aws_vpc_endpoint" "s3" {
