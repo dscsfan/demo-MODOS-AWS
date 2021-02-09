@@ -75,6 +75,15 @@ resource "aws_security_group" "sg_pri_1" {
     protocol        = "tcp"
     security_groups = [aws_security_group.sg_pub_1.id]
   }
+
+  egress = {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "allow all"
+  }
+
 }
 
 resource "aws_vpc_endpoint" "s3" {
@@ -101,7 +110,7 @@ resource "aws_nat_gateway" "nat-gw" {
   subnet_id     = module.netwk.snet_pub_1_id
 
   tags = {
-    Name = "nat-gw"
+    Name    = "nat-gw"
     Project = var.project_name
   }
 }
@@ -114,7 +123,7 @@ resource "aws_route_table" "rt-pri-1" {
   }
 
   tags = {
-    Name = var.rt_name_pri
+    Name    = var.rt_name_pri
     Project = var.project_name
   }
 }
