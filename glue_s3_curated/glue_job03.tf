@@ -14,6 +14,8 @@ resource "aws_glue_job" "glue_job03" {
     script_location = "s3://${data.aws_s3_bucket.s3-curated.bucket}/scripts/${var.glue_job_name}"
   }
 
+  connections = [var.glue_connection]
+
   default_arguments = {
     "--TempDir"                          = "s3://${data.aws_s3_bucket.s3-curated.bucket}/temp"
     "--job-bookmark-option"              = "job-bookmark-disable"

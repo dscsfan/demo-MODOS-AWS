@@ -21,3 +21,6 @@ variable "glue_job_name" {
 
 }
 
+variable "glue_connection" {
+  
+}
