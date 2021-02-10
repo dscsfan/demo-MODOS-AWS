@@ -19,7 +19,7 @@ module "db" {
   instance_type           = "db.t3.medium"
   storage_encrypted       = true
   apply_immediately       = true
-  monitoring_interval     = 10
+  monitoring_interval     = 15
 
   db_parameter_group_name         = aws_db_parameter_group.rds-pg-modos-aws.name
   db_cluster_parameter_group_name = aws_rds_cluster_parameter_group.rds-clst-pg-modos-aws.name
