@@ -25,3 +25,6 @@ variable "password" {
 variable "project_name" {
 
 }
+variable "rds_cluster_name" {
+  description = "RDS cluster name"
+}

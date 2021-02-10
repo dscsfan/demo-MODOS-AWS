@@ -2,7 +2,7 @@ module "db" {
   source  = "terraform-aws-modules/rds-aurora/aws"
   version = "3.3.0"
 
-  name          = "rds-modos-aws-01" #resource name
+  name          = var.rds_cluster_name #resource name
   database_name = var.database_name  #database name
   username      = var.username       #master db username
   password      = var.password       #master db password
