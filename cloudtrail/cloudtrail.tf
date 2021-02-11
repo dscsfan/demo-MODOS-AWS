@@ -4,8 +4,8 @@ resource "aws_cloudtrail" "mycloudtrail" {
   name                          = var.cloudtrail_name
   s3_bucket_name                = aws_s3_bucket.mys3.id
   s3_key_prefix                 = "cloudtrail"
-  cloud_watch_logs_group_arn    = "${aws_cloudwatch_log_group.mycloudwatchgroup.arn}:*"
-  cloud_watch_logs_role_arn = data.aws_iam_role.ct-cw-role.arn
+  #cloud_watch_logs_group_arn    = "${aws_cloudwatch_log_group.mycloudwatchgroup.arn}:*"
+  #cloud_watch_logs_role_arn = data.aws_iam_role.ct-cw-role.arn
   include_global_service_events = false
 
   event_selector {
@@ -62,6 +62,7 @@ data "aws_s3_bucket" "important-bucket" {
   bucket = var.s3_trail_bucket_name
 }
 
+/*
 resource "aws_cloudwatch_log_group" "mycloudwatchgroup" {
   name = var.cloud_watch_group_name
 }
@@ -69,3 +70,4 @@ resource "aws_cloudwatch_log_group" "mycloudwatchgroup" {
 data "aws_iam_role" "ct-cw-role" {
   name = "CloudTrail_CloudWatchLogs_Role"
 }
+*/
