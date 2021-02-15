@@ -12,4 +12,5 @@ variable "retention_period" {
 }
 variable "shard_count" {
   description = "Shard Count"
+  default = 1
 }
